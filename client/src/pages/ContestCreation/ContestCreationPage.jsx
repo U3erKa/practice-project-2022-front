@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styles from './ContestCreationPage.module.sass';
 import { saveContestToStore } from '../../store/slices/contestCreationSlice';
 import NextButton from '../../components/InputComponents/NextButton/NextButton';
@@ -9,19 +10,26 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
+
 const ContestCreationPage = (props) => {
+  const { contestCreationStore, bundleStore } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const formRef = useRef();
-  const contestData = props.contestCreationStore.contests[props.contestType]
-    ? props.contestCreationStore.contests[props.contestType]
+
+  const contestData = contestCreationStore.contests[props.contestType]
+    ? contestCreationStore.contests[props.contestType]
     : { contestType: props.contestType };
 
+  const saveContest = (data) => dispatch(saveContestToStore(data));
+
   const handleSubmit = (values) => {
-    props.saveContest({ type: props.contestType, info: values });
+    saveContest({ type: props.contestType, info: values });
     const route =
-      props.bundleStore.bundle[props.contestType] === 'payment'
+      bundleStore.bundle[props.contestType] === 'payment'
         ? '/payment'
-        : `${props.bundleStore.bundle[props.contestType]}Contest`;
-    props.history.push(route);
+        : `${bundleStore.bundle[props.contestType]}Contest`;
+    history.push(route);
   };
 
   const submitForm = () => {
@@ -30,7 +38,7 @@ const ContestCreationPage = (props) => {
     }
   };
 
-  !props.bundleStore.bundle && props.history.replace('/startContest');
+  !bundleStore.bundle && history.replace('/startContest');
 
   return (
     <div>
@@ -68,16 +76,4 @@ const ContestCreationPage = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { contestCreationStore, bundleStore } = state;
-  return { contestCreationStore, bundleStore };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  saveContest: (data) => dispatch(saveContestToStore(data)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ContestCreationPage);
+export default ContestCreationPage;

@@ -48,11 +48,19 @@ class ContestForm extends React.Component {
         this.props.getData({ characteristic1: 'brandStyle' });
         break;
       }
+      default: {
+      }
     }
   };
 
   componentDidMount() {
     this.getPreference();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.contestType !== this.props.contestType) {
+      this.getPreference();
+    }
   }
 
   render() {
