@@ -3,13 +3,30 @@
   line-height: 22px
 
   &Main
-    width: clamp(320px, 65%, 1200px)
-    margin: 0 auto
     display: flex
+    flex-direction: column
+    justify-content: center
+    flex-wrap: wrap
+    margin: 0 auto
+
+    @media (width >= 512px)
+      flex-direction: row
+    @media (width > 1440px)
+      width: clamp(320px, 65%, 1200px)
 
   &Card
-    width: 25%
     padding: 60px 15px
+    &:nth-child(odd)
+      margin-left: auto
+    &:nth-child(even)
+      margin-right: auto
+
+    @media (width >= 512px)
+      width: clamp(220px, 43%, 320px)
+    @media (width >= 1200px)
+      width: 22%
+      &:nth-child(n)
+        margin: unset
 
 .card
   &Head
