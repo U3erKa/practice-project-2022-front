@@ -20,6 +20,7 @@ import browserHistory from './browserHistory';
 import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
 import PrivateRoute from 'components/Routes/PrivateRoute/PrivateRoute';
 import PublicOnlyRoute from 'components/Routes/PublicOnlyRoute/PublicOnlyRoute';
+import Pricing from 'pages/Pricing/Pricing';
 
 class App extends Component {
   render() {
@@ -71,6 +72,7 @@ class App extends Component {
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/contest/:id" component={ContestPage} />
           <PrivateRoute exact path="/account" component={UserProfile} />
+          <PrivateRoute exact path="/squadhelp-pricing" component={Pricing} />
           <Route component={NotFound} />
         </Switch>
         <ChatContainer />

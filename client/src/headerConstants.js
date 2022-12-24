@@ -11,7 +11,7 @@ const NAME_IDEAS = [
 
 const CONTESTS = [
   { id: 0, href: 'http://www.google.com', text: 'How it Works' },
-  { id: 1, href: 'http://www.google.com', text: 'Pricing' },
+  { id: 1, href: 'squadhelp-pricing', text: 'Pricing' },
   { id: 2, href: 'http://www.google.com', text: 'Agency Service' },
   { id: 3, href: 'http://www.google.com', text: 'Active Contests' },
   { id: 4, href: 'http://www.google.com', text: 'Winners' },
