@@ -6,10 +6,10 @@
 const listEntry = (/** @type {TextEntry} */ textEntry) => {
   switch (textEntry.type) {
     case 'link': {
-      return <a href={textEntry.href}>{textEntry.text}</a>;
+      return <a href={textEntry.href} key={Math.random()}>{textEntry.text}</a>;
     }
     case 'plain': {
-      return <span>{textEntry.text}</span>;
+      return <span key={Math.random()}>{textEntry.text}</span>;
     }
     default: {
       return <>{textEntry.text}</>;

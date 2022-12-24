@@ -18,7 +18,7 @@ export default function PricingCards(
       listOfBenefits,
       isPartiallyRefundable,
     }) => (
-      <div className={styles.containerCard}>
+      <div className={styles.containerCard} key={id}>
         <div className={styles.cardHead}>
           <h3 className={styles.cardHeading}>{tier}</h3>
           <p className={styles.cardMemo}>{memo}</p>
