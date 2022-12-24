@@ -1,7 +1,3 @@
-import React from 'react';
-import { TopBox } from '../TopBox/TopBox';
-import styles from './PricingCards.module.sass';
-
 /**
  * @typedef {Object[]} PricingCards
  * @property {number} id
@@ -11,16 +7,13 @@ import styles from './PricingCards.module.sass';
  * @property {number} [prizeToWinner]
  * @property {number} [servicesValue]
  * @property {number} [expectedEntries]
- * @property {TextEntryList} [listOfBenefits]
- * @property {TextEntryList} [description]
+ * @property {import("utils/createList").TextEntryList} [listOfBenefits]
+ * @property {import("utils/createList").TextEntryList} [description]
  * @property {boolean} isPartiallyRefundable
- * 
- * @typedef {(TextEntry | TextEntry[])[]} TextEntryList
- * @typedef {{type: 'plain' | 'link', text: string, [prop: string]: any}} TextEntry
  */
 
 /** @type {PricingCards} */
-export const pricingTiers = [
+const PRICING_TIERS = [
   {
     id: 0,
     tier: 'Bronze',
@@ -100,66 +93,4 @@ export const pricingTiers = [
   },
 ];
 
-const PricingTextEntry = (/** @type {TextEntry} */ textEntry) => {
-  switch (textEntry.type) {
-    case 'link': {
-      return <a href={textEntry.href}>{textEntry.text}</a>;
-    }
-    case 'plain': {
-      return <span>{textEntry.text}</span>;
-    }
-    default: {
-      return <>{textEntry.text}</>;
-    }
-  }
-};
-
-export default function PricingCards(
-  /** @type {{cards: PricingCards}} */ { cards }
-) {
-  const mapPricingCards = cards.map(
-    ({
-      tier,
-      memo,
-      price,
-      description,
-      prizeToWinner,
-      servicesValue,
-      expectedEntries,
-      listOfBenefits,
-      isPartiallyRefundable,
-    }) => {
-      const mapText = (
-        /** @type {TextEntryList} */ text,
-        isInsideList = false
-      ) =>
-        text.map((/** @type {TextEntry} */ textEntry, i) =>
-          Array.isArray(textEntry) ? (
-            <li key={i}>{mapText(textEntry, true)}</li>
-          ) : isInsideList ? (
-            PricingTextEntry(textEntry)
-          ) : (
-            <li key={i}>{PricingTextEntry(textEntry)}</li>
-          )
-        );
-      return (
-        <div className={styles.containerCard}>
-          <TopBox tier={tier} memo={memo} price={price} />
-          {description ? (
-            <div>{mapText(description)}</div>
-          ) : (
-            <div>
-              <p>Prize to Winner - ${prizeToWinner} (Included)</p>
-              <p>Validation Services & Upgrades (${servicesValue} value)</p>
-              <ul>{mapText(listOfBenefits)}</ul>
-              <p>Expected {expectedEntries}+ Entries</p>
-            </div>
-          )}
-          {isPartiallyRefundable && <p>Partial Refund Option</p>}
-        </div>
-      );
-    }
-  );
-
-  return <div className={styles.containerMain}>{mapPricingCards}</div>;
-}
+export default PRICING_TIERS;

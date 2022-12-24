@@ -1,12 +1,13 @@
 import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
-import PricingCards, { pricingTiers } from 'components/Pricing/PricingCards/PricingCards';
+import PricingCards from 'components/PricingCards/PricingCards';
+import PRICING_TIERS from 'pricingConstants';
 
 function Pricing(props) {
   return (
     <>
       <Header />
-      <PricingCards cards={pricingTiers} />
+      <PricingCards cards={PRICING_TIERS} />
       <Footer />
     </>
   );
