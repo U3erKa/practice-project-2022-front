@@ -1,5 +1,13 @@
+$colorBronze: #e0b48d
+$colorGold: #e8b954
+$colorPlatinum: #555
+$colorManaged: #28d2d0
+$colorContainer: #f8f8f8
+$colorLink: #337ab7
+$padding: 15px
+
 .container
-  background-color: #f8f8f8
+  background-color: $colorContainer
   line-height: 22px
 
   &Main
@@ -15,7 +23,7 @@
       width: clamp(320px, 65%, 1200px)
 
   &Card
-    padding: 60px 15px
+    padding: calc($padding * 4) $padding
     &:nth-child(odd)
       margin-left: auto
     &:nth-child(even)
@@ -31,13 +39,13 @@
 .card
   &Head
     border: 10px solid
-    padding: 16px
-    margin-bottom: 15px
+    padding: $padding
+    margin-bottom: $padding
 
   &Heading
     color: inherit
     font-size: 2.1rem
-    margin-bottom: 10px
+    margin-bottom: calc($padding * 2 / 3)
     font-weight: bold
 
   &Memo
@@ -51,50 +59,50 @@
     text-align: right
 
 .prize
-  padding: 13px 0
+  padding: $padding 0
   border-bottom: 2px solid #ddd
 
 .services
-  padding: 13px 0
+  padding: $padding 0
 
 .benefits
   font-size: 0.8rem
   border-bottom: 2px solid #ddd
 
   & > *
-    padding: 10px 0
+    padding: calc($padding / 2) 0
 
     a
       text-decoration: none
-      color: #337ab7
+      color: $colorLink
 
     &::before
       content: '\2714'
-      padding: 0 5px 0 10px
+      padding: 0 calc($padding / 3) 0 calc($padding * 2 / 3)
 
 .entries
-  padding: 15px 0
+  padding: $padding 0
 
 .refund
   border-top: 2px solid #ddd
-  padding: 15px 0
+  padding: $padding 0
 
 .description
   list-style-type: none
 
   & > *
-    padding-top: 15px
+    padding-top: $padding
 
   & > *:last-child
-    padding-bottom: 15px
+    padding-bottom: $padding
 
   a
     text-decoration: none
-    color: #337ab7
+    color: $colorLink
 
 .start
   display: block
-  padding: 15px 0
+  padding: $padding 0
   text-align: center
   text-decoration: none
   font-weight: bold
@@ -104,30 +112,30 @@
 .tier
   &Bronze
     &Box
-      color: #e0b48d
-      border-color: #e0b48d
+      color: $colorBronze
+      border-color: $colorBronze
     &Btn
-      background-color: #e0b48d
+      background-color: $colorBronze
 
   &Gold
     &Box
-      color: #e8b954
-      border-color: #e8b954
+      color: $colorGold
+      border-color: $colorGold
     &Btn
-      background-color: #e8b954
+      background-color: $colorGold
 
   &Platinum
     &Box
-      color: #555
-      border-color: #555
+      color: $colorPlatinum
+      border-color: $colorPlatinum
     &Btn
-      background-color: #555
+      background-color: $colorPlatinum
 
   &Managed
     &Box
-      color: #28d2d0
-      border-color: #28d2d0
+      color: $colorManaged
+      border-color: $colorManaged
     &Price
-      color: #555
+      color: $colorPlatinum
     &Btn
-      background-color: #28d2d0
+      background-color: $colorManaged
