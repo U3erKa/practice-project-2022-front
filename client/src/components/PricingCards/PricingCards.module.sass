@@ -1,5 +1,6 @@
 .container
   background-color: #f8f8f8
+  line-height: 22px
 
   &Main
     width: clamp(320px, 65%, 1200px)
@@ -46,6 +47,10 @@
   & > *
     padding: 15px 0
 
+    a
+      text-decoration: none
+      color: #337ab7
+
     &::before
       content: '\2714'
       padding: 0 5px 0 10px
@@ -56,6 +61,19 @@
 .refund
   border-top: 2px solid #ddd
   padding: 15px 0
+
+.description
+  list-style-type: none
+
+  & > *
+    padding-top: 15px
+
+  & > *:last-child
+    padding-bottom: 15px
+
+  a
+    text-decoration: none
+    color: #337ab7
 
 .start
   display: block

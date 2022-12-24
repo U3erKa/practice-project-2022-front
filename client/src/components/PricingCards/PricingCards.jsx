@@ -25,7 +25,7 @@ export default function PricingCards(
           <p className={styles.cardPrice}>US${price}</p>
         </div>
         {description ? (
-          <div>{createList(description)}</div>
+          <div className={styles.description}>{createList(description)}</div>
         ) : (
           <div>
             <p className={styles.prize}>
