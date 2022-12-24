@@ -19,10 +19,10 @@ export default function PricingCards(
       isPartiallyRefundable,
     }) => (
       <div className={styles.containerCard} key={id}>
-        <div className={styles.cardHead}>
+        <div className={`${styles.cardHead} ${styles[`tier${tier}Box`]}`}>
           <h3 className={styles.cardHeading}>{tier}</h3>
           <p className={styles.cardMemo}>{memo}</p>
-          <p className={styles.cardPrice}>US${price}</p>
+          <p className={`${styles.cardPrice} ${styles[`tier${tier}Price`]}`}>US${price}</p>
         </div>
         {description ? (
           <div className={styles.description}>{createList(description)}</div>
@@ -43,7 +43,7 @@ export default function PricingCards(
         {isPartiallyRefundable && (
           <p className={styles.refund}>Partial Refund Option</p>
         )}
-        <Link to={`/startcontest?type=${id}`} className={styles.start}>
+        <Link to={`/startcontest?type=${id}`} className={`${styles.start} ${styles[`tier${tier}Btn`]}`}>
           {'\u2714 Start'}
         </Link>
       </div>
