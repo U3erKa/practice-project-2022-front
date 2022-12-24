@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import createList from 'utils/createList';
 import styles from './PricingCards.module.sass';
 
@@ -6,6 +7,7 @@ export default function PricingCards(
 ) {
   const mapPricingCards = cards.map(
     ({
+      id,
       tier,
       memo,
       price,
@@ -26,16 +28,31 @@ export default function PricingCards(
           <div>{createList(description)}</div>
         ) : (
           <div>
-            <p>Prize to Winner - ${prizeToWinner} (Included)</p>
-            <p>Validation Services & Upgrades (${servicesValue} value)</p>
-            <ul>{createList(listOfBenefits)}</ul>
-            <p>Expected {expectedEntries}+ Entries</p>
+            <p className={styles.prize}>
+              Prize to Winner - ${prizeToWinner} (Included)
+            </p>
+            <p className={styles.services}>
+              Validation Services & Upgrades (${servicesValue} value)
+            </p>
+            <ul className={styles.benefits}>{createList(listOfBenefits)}</ul>
+            <p className={styles.entries}>
+              Expected {expectedEntries}+ Entries
+            </p>
           </div>
         )}
-        {isPartiallyRefundable && <p>Partial Refund Option</p>}
+        {isPartiallyRefundable && (
+          <p className={styles.refund}>Partial Refund Option</p>
+        )}
+        <Link to={`/startcontest?type=${id}`} className={styles.start}>
+          {'\u2714 Start'}
+        </Link>
       </div>
     )
   );
 
-  return <div className={styles.containerMain}>{mapPricingCards}</div>;
+  return (
+    <div className={styles.container}>
+      <div className={styles.containerMain}>{mapPricingCards}</div>
+    </div>
+  );
 }

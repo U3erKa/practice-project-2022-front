@@ -1,11 +1,14 @@
 .container
+  background-color: #f8f8f8
+
   &Main
-    width: clamp(320px, 50%, 1080px)
+    width: clamp(320px, 65%, 1200px)
     margin: 0 auto
     display: flex
 
   &Card
     width: 25%
+    padding: 60px 15px
 
 .card
   &Head
@@ -13,19 +16,53 @@
     padding: 16px
     margin-bottom: 15px
 
+  &Heading
+    font-size: 2.1rem
+    margin-bottom: 10px
+    font-weight: bold
+
+  &Memo
+    min-height: 75px
+    font-size: 1rem
+    color: #666
+
+  &Price
+    font-size: 1.75rem
+    font-weight: 600
+    text-align: right
+
   // &Body
 
-.cardHeading
-  font-size: 2.1rem
-  margin-bottom: 10px
+.prize
+  padding: 13px 0
+  border-bottom: 2px solid #ddd
+
+.services
+  padding: 13px 0
+
+.benefits
+  border-bottom: 2px solid #ddd
+
+  & > *
+    padding: 15px 0
+
+    &::before
+      content: '\2714'
+      padding: 0 5px 0 10px
+
+.entries
+  padding: 15px 0
+
+.refund
+  border-top: 2px solid #ddd
+  padding: 15px 0
+
+.start
+  display: block
+  padding: 15px 0
+  text-align: center
+  text-decoration: none
   font-weight: bold
-
-.cardMemo
-  min-height: 75px
-  font-size: 1rem
-  color: #666
-
-.cardPrice
-  font-size: 1.75rem
-  font-weight: 600
-  text-align: right
+  color: white
+  background-color: darkgray
+  border-radius: 5px
