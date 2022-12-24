@@ -12,11 +12,8 @@ import React from 'react';
  * @property {TextEntryList} [listOfBenefits]
  * @property {TextEntryList} [description]
  * @property {boolean} isPartiallyRefundable
- */
-/**
+ * 
  * @typedef {(TextEntry | TextEntry[])[]} TextEntryList
- */
-/**
  * @typedef {{type: 'plain' | 'link', text: string, [prop: string]: any}} TextEntry
  */
 
@@ -101,13 +98,13 @@ export const pricingTiers = [
   },
 ];
 
-const reduceTextEntry = (/** @type {TextEntry} */ textEntry) => {
+const PricingTextEntry = (/** @type {TextEntry} */ textEntry) => {
   switch (textEntry.type) {
     case 'link': {
       return <a href={textEntry.href}>{textEntry.text}</a>;
     }
     case 'plain': {
-      return <>{textEntry.text}</>;
+      return <span>{textEntry.text}</span>;
     }
     default: {
       return <>{textEntry.text}</>;
@@ -130,14 +127,17 @@ export default function PricingCards(
       listOfBenefits,
       isPartiallyRefundable,
     }) => {
-      const mapText = (/** @type {TextEntryList} */ text) =>
+      const mapText = (
+        /** @type {TextEntryList} */ text,
+        isInsideList = false
+      ) =>
         text.map((/** @type {TextEntry} */ textEntry, i) =>
           Array.isArray(textEntry) ? (
-            mapText(textEntry)
+            <li key={i}>{mapText(textEntry, true)}</li>
+          ) : isInsideList ? (
+            PricingTextEntry(textEntry)
           ) : (
-            <li key={i}>
-              <p>{reduceTextEntry(textEntry)}</p>
-            </li>
+            <li key={i}>{PricingTextEntry(textEntry)}</li>
           )
         );
       return (
