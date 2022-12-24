@@ -1,4 +1,6 @@
 import React from 'react';
+import { TopBox } from '../TopBox/TopBox';
+import styles from './PricingCards.module.sass';
 
 /**
  * @typedef {Object[]} PricingCards
@@ -141,7 +143,7 @@ export default function PricingCards(
           )
         );
       return (
-        <div>
+        <div className={styles.containerCard}>
           <TopBox tier={tier} memo={memo} price={price} />
           {description ? (
             <div>{mapText(description)}</div>
@@ -159,29 +161,5 @@ export default function PricingCards(
     }
   );
 
-  // {
-  //   let acc;
-  //   switch (textEntry.elem.type) {
-  //     case 'plain': {
-  //       return acc + <p>{elem.text}</p>;
-  //     }
-  //     case 'link': {
-  //       return acc + <a href={elem.href}>{elem.text}</a>;
-  //     }
-  //     default: {
-  //       return acc + elem;
-  //     }
-  //   }
-  // });
-  return <>{mapPricingCards}</>;
-}
-
-export function TopBox({ tier, memo, price }) {
-  return (
-    <div>
-      <h3>{tier}</h3>
-      <p>{memo}</p>
-      <span>US${price}</span>
-    </div>
-  );
+  return <div className={styles.containerMain}>{mapPricingCards}</div>;
 }
